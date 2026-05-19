@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Preloader } from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import { revealVariants, staggerContainer } from './hooks/useScrollReveal'
+import { apiUrl } from './lib/api'
 
 type ConvertMode = 'docx-pdf' | 'xlsx-pdf' | 'pdf-compress' | 'batch'
 
@@ -50,9 +51,9 @@ function App() {
         formData.append('file', files[0])
 
         const endpoint =
-          mode === 'docx-pdf' ? '/api/convert/docx-pdf' :
-          mode === 'xlsx-pdf' ? '/api/convert/xlsx-pdf' :
-          '/api/convert/pdf-compress'
+          mode === 'docx-pdf' ? apiUrl('/api/convert/docx-pdf') :
+          mode === 'xlsx-pdf' ? apiUrl('/api/convert/xlsx-pdf') :
+          apiUrl('/api/convert/pdf-compress')
 
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -73,7 +74,7 @@ function App() {
         link.download = newName
         link.click()
       } else {
-        const response = await fetch('/api/convert/batch', {
+        const response = await fetch(apiUrl('/api/convert/batch'), {
           method: 'POST',
           body: formData,
         })
