@@ -43,12 +43,11 @@ function App() {
     setConverting(true)
     setResults([])
 
-    const formData = new FormData()
-    files.forEach(file => formData.append('files', file))
+  const formData = new FormData()
 
-    try {
-      if (files.length === 1 && mode !== 'batch') {
-        formData.append('file', files[0])
+  try {
+    if (files.length === 1 && mode !== 'batch') {
+      formData.append('file', files[0])
 
         const endpoint =
           mode === 'docx-pdf' ? apiUrl('/api/convert/docx-pdf') :
@@ -73,8 +72,10 @@ function App() {
         link.href = url
         link.download = newName
         link.click()
-      } else {
-        const response = await fetch(apiUrl('/api/convert/batch'), {
+        URL.revokeObjectURL(url)
+    } else {
+      files.forEach(file => formData.append('files', file))
+      const response = await fetch(apiUrl('/api/convert/batch'), {
           method: 'POST',
           body: formData,
         })
@@ -129,7 +130,7 @@ function App() {
                 transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-8 h-8 flex items-center justify-center"
               >
-                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
               </motion.div>
@@ -168,8 +169,9 @@ function App() {
                 {modeOptions.map((opt) => (
                   <button
                     key={opt.key}
-                    onClick={() => setMode(opt.key)}
-                    className={`group relative py-4 px-4 text-left transition-all duration-200 ${
+          onClick={() => setMode(opt.key)}
+          aria-pressed={mode === opt.key}
+          className={`group relative py-4 px-4 text-left transition-all duration-200 ${
                       mode === opt.key
                         ? 'bg-[var(--color-primary)] text-[var(--color-cream)]'
                         : 'bg-[var(--color-bg)] text-[var(--color-text-muted)] border-b border-[var(--color-border)] hover:border-[var(--color-primary)]'
@@ -210,12 +212,13 @@ function App() {
                   accept=".docx,.xlsx,.pdf"
                 />
                 <label htmlFor="file-input" className="cursor-pointer flex flex-col items-center justify-center py-16 px-8 relative z-10">
-                  <motion.svg
-                    className="w-10 h-10 text-[var(--color-primary)] mb-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    animate={{ y: isDragging ? -4 : 0 }}
+  <motion.svg
+          className="w-10 h-10 text-[var(--color-primary)] mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+          animate={{ y: isDragging ? -4 : 0 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -356,7 +359,7 @@ function App() {
         </main>
 
         <footer className="fade-border-top px-6 py-6 mt-8">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="max-w-5xl mx-auto flex items-center justify-between">
             <p className="font-serif text-sm text-[var(--color-text-muted)]">
               Desenvolvido por Isaac Nathan
             </p>

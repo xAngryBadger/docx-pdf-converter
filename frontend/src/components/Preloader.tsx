@@ -91,7 +91,7 @@ export function Preloader({ title = 'Badger Tools', onComplete }: PreloaderProps
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="eyebrow text-[var(--color-sage)] mb-4"
+              className="eyebrow text-[var(--color-primary)] mb-4"
             >
               Badger Tools
             </motion.p>
@@ -107,11 +107,11 @@ export function Preloader({ title = 'Badger Tools', onComplete }: PreloaderProps
 
           <div className="w-full max-w-xs px-8">
             <div className="flex items-center gap-4">
-              <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[var(--color-sage)]" />
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[var(--color-primary)]" />
               <span className="counter-animate text-2xl font-serif text-[var(--color-cream)] tabular-nums">
                 {paddedProgress}
               </span>
-              <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[var(--color-sage)]" />
+              <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[var(--color-primary)]" />
             </div>
             <motion.p
               initial={{ opacity: 0 }}
