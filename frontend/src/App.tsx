@@ -120,7 +120,7 @@ function App() {
         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]"
       >
-        <header className="fixed top-0 left-0 right-0 z-40 fade-border-bottom" style={{ backdropFilter: 'blur(16px)', backgroundColor: 'rgba(13,17,23,0.8)' }}>
+        <header className="fixed top-0 left-0 right-0 z-40 fade-border-bottom h-16 flex items-center" style={{ backdropFilter: 'blur(16px)', backgroundColor: 'rgba(11,15,25,0.8)' }}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <motion.div
@@ -129,7 +129,7 @@ function App() {
                 transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-8 h-8 flex items-center justify-center"
               >
-                <svg className="w-6 h-6 text-[var(--color-sage)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
               </motion.div>
@@ -141,14 +141,14 @@ function App() {
           </div>
         </header>
 
-        <main className="max-w-5xl mx-auto px-6 pt-24 pb-16 lg:px-8">
+        <main className="max-w-5xl mx-auto px-6 pt-20 pb-16 lg:px-8">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
             <motion.div variants={revealVariants} custom={0} className="mb-12 text-center">
-              <p className="eyebrow text-[var(--color-sage)] mb-3">Conversão de Documentos</p>
+              <p className="eyebrow text-[var(--color-primary)] mb-3">Conversão de Documentos</p>
               <h2 className="text-3xl md:text-4xl font-serif font-normal text-[var(--color-cream)] leading-tight">
                 Converta em lote.<br />
                 <span className="text-[var(--color-amber-light)]">Sem limites.</span>
@@ -171,8 +171,8 @@ function App() {
                     onClick={() => setMode(opt.key)}
                     className={`group relative py-4 px-4 text-left transition-all duration-200 ${
                       mode === opt.key
-                        ? 'bg-[var(--color-sage)] text-[var(--color-cream)]'
-                        : 'bg-[var(--color-bg)] text-[var(--color-text-muted)] border-b border-[var(--color-border)] hover:border-[var(--color-sage)]'
+                        ? 'bg-[var(--color-primary)] text-[var(--color-cream)]'
+                        : 'bg-[var(--color-bg)] text-[var(--color-text-muted)] border-b border-[var(--color-border)] hover:border-[var(--color-primary)]'
                     }`}
                   >
                     <span className="block text-sm font-medium">{opt.label}</span>
@@ -196,8 +196,8 @@ function App() {
                 onDrop={handleFileDrop}
                 className={`relative border border-dashed transition-all duration-300 cursor-pointer geometric-bg ${
                   isDragging
-                    ? 'border-[var(--color-sage)] bg-[var(--color-sage)]/5'
-                    : 'border-[var(--color-border)] hover:border-[var(--color-sage)]'
+                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5'
+                    : 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
                 }`}
                 style={{ minHeight: '200px' }}
               >
@@ -211,7 +211,7 @@ function App() {
                 />
                 <label htmlFor="file-input" className="cursor-pointer flex flex-col items-center justify-center py-16 px-8 relative z-10">
                   <motion.svg
-                    className="w-10 h-10 text-[var(--color-sage)] mb-4"
+                    className="w-10 h-10 text-[var(--color-primary)] mb-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -246,7 +246,7 @@ function App() {
                       </button>
                     </div>
 
-                    <div className="space-y-0">
+                <div className="space-y-0 max-h-64 overflow-y-auto pr-2">
                       {files.map((file, index) => (
                         <motion.div
                           key={`${file.name}-${index}`}
@@ -325,7 +325,7 @@ function App() {
                         className="flex items-center justify-between py-3 editorial-divider"
                       >
                         <div className="flex items-center gap-3">
-                          <span className={result.status === 'success' ? 'text-[var(--color-sage)]' : 'text-[var(--color-amber-light)]'}>
+                          <span className={result.status === 'success' ? 'text-[var(--color-primary)]' : 'text-[var(--color-amber-light)]'}>
                             {result.status === 'success' ? (
                               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
@@ -339,7 +339,7 @@ function App() {
                           <div>
                             <p className="text-sm text-[var(--color-text)]">{result.original}</p>
                             {result.converted && (
-                              <p className="label-mono text-[var(--color-sage)] mt-0.5">→ {result.converted}</p>
+                              <p className="label-mono text-[var(--color-primary)] mt-0.5">→ {result.converted}</p>
                             )}
                           </div>
                         </div>
@@ -362,7 +362,7 @@ function App() {
             </p>
             <a
               href="https://github.com/xAngryBadger"
-              className="link-underline label-mono text-[var(--color-sage)] hover:text-[var(--color-sage-light)]"
+              className="link-underline label-mono text-[var(--color-primary)] hover:text-[var(--color-primary-light)]"
             >
               GitHub
             </a>

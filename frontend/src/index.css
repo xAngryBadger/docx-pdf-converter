@@ -8,36 +8,37 @@
 @import "@fontsource/inter/600.css";
 
 @theme {
+  /* DocX Converter - Steel Blue (Tech/Reliable) */
+  --color-primary: #2563eb;
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+  --color-accent: #60a5fa;
+  
+  /* Base */
+  --color-cream: #eff6ff;
+  --color-offset: #93c5fd;
+  --color-bg: #0b0f19;
+  --color-bg-alt: #111827;
+  --color-bg-elevated: #1f2937;
+  --color-border: #374151;
+  --color-border-subtle: #1f2937;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-text-light: #f3f4f6;
+  
+  /* Fonts */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-
-  --color-sage: #456A4B;
-  --color-sage-light: #5a7f5f;
-  --color-sage-dark: #36553c;
-  --color-amber: #a8611a;
-  --color-amber-light: #eab279;
-  --color-cream: #fffbe7;
-  --color-cream-50: #fffbe780;
-  --color-offset: #a8a98f;
-  --color-beige: #f7d9bb;
-  --color-bg: #0d1117;
-  --color-bg-alt: #161b22;
-  --color-bg-elevated: #1c2129;
-  --color-border: #30363d;
-  --color-border-subtle: #21262d;
-  --color-text: #e6edf3;
-  --color-text-muted: #8b9481;
-  --color-text-light: #f0f6fc;
 }
 
 :root {
-  --h1-size: clamp(3.4rem, 5.2rem, 8rem);
-  --h2-size: clamp(2.3rem, 3.4rem, 5rem);
-  --h3-size: clamp(1.75rem, 2rem, 3rem);
-  --h4-size: clamp(1.5rem, 1.75rem, 2.5rem);
-  --eyebrow-size: 1.1rem;
-  --label-mono-size: 0.75rem;
+  --h1-size: clamp(2.5rem, 5vw, 4.5rem);
+  --h2-size: clamp(1.75rem, 3vw, 2.5rem);
+  --h3-size: clamp(1.25rem, 2vw, 1.75rem);
+  --h4-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  --eyebrow-size: clamp(0.875rem, 1.5vw, 1rem);
+  --label-mono-size: clamp(0.75rem, 1vw, 0.875rem);
   --pattern-size: 80px;
 
   font-family: var(--font-sans);
@@ -53,14 +54,6 @@
 @media (min-width: 834px) {
   :root {
     --pattern-size: 25vw;
-    --eyebrow-size: 1.3rem;
-    --label-mono-size: 0.8rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  :root {
-    --eyebrow-size: 1.4rem;
   }
 }
 
@@ -77,7 +70,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.12;
+  line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
@@ -131,12 +124,12 @@ p {
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-sage);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 ::selection {
-  background-color: var(--color-sage);
+  background-color: var(--color-primary);
   color: var(--color-cream);
 }
 
@@ -183,6 +176,8 @@ html.lenis {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+  will-change: transform;
+  contain: layout style;
 }
 
 @keyframes noise-shift {
@@ -212,7 +207,7 @@ html.lenis {
   position: absolute;
   inset: 0;
   background: no-repeat center/100% 100%
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='48'%3E%3Cpath d='M0 0h208l12 12v36H0z' fill='none' stroke='%23456A4B' stroke-width='1'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='48'%3E%3Cpath d='M0 0h208l12 12v36H0z' fill='none' stroke='%232563eb' stroke-width='1'/%3E%3C/svg%3E");
   transition: opacity 0.3s ease;
   z-index: 2;
 }
@@ -225,7 +220,7 @@ html.lenis {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: var(--color-sage);
+  background-color: var(--color-primary);
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
   transition: clip-path 0.3s cubic-bezier(0.85, 0, 0.15, 1);
   z-index: 0;
@@ -275,7 +270,7 @@ html.lenis {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 4vw, 4rem);
   font-weight: 300;
-  color: var(--color-amber-light);
+  color: var(--color-accent);
   line-height: 1;
   opacity: 0.4;
   transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
@@ -283,7 +278,7 @@ html.lenis {
 
 .group:hover .section-number {
   opacity: 1;
-  color: var(--color-amber);
+  color: var(--color-primary);
 }
 
 .geometric-bg {
@@ -305,7 +300,7 @@ html.lenis {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent, rgba(13,17,23,0.8));
+  background: linear-gradient(180deg, transparent, rgba(11,15,25,0.8));
   pointer-events: none;
 }
 
