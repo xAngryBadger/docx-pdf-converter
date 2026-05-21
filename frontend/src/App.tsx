@@ -78,7 +78,7 @@ function App() {
         link.href = url
         link.download = newName
         link.click()
-        URL.revokeObjectURL(url)
+        setTimeout(() => URL.revokeObjectURL(url), 10000)
     } else {
       files.forEach(file => formData.append('files', file))
       const response = await fetch(apiUrl('/api/convert/batch'), {

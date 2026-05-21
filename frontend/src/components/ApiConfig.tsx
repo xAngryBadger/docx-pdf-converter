@@ -13,6 +13,7 @@ export function ApiConfig({ colabUrl }: ApiConfigProps) {
   const [connected, setConnected] = useState(hasApiUrl)
 
   const handleSave = () => {
+    if (!url.trim()) return
     setApiUrl(url)
     setConnected(true)
     setSaved(true)
@@ -71,7 +72,7 @@ export function ApiConfig({ colabUrl }: ApiConfigProps) {
                     >
                       Abra o notebook no Colab
                     </a>
-                    {' '}e rode as 3 células
+                    {' '}e rode as 4 células
                   </span>
                 </li>
                 <li className="flex gap-3">
