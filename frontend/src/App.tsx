@@ -94,7 +94,7 @@ function App() {
       }
   } catch (error) {
     if (error instanceof Error && error.message === 'NO_API_URL') {
-      alert('Configure a URL da API primeiro. Clique em "Sem API" no header e cole a URL do ngrok.')
+      alert('Configure a URL da API primeiro. Clique em "Sem API" no header e cole a URL do Cloudflare.')
     } else {
       console.error('Error:', error)
       setResults([{ original: files[0].name, status: 'error', error: 'Erro na conversão. Verifique se o backend está online.' }])

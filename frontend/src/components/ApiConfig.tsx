@@ -72,12 +72,12 @@ export function ApiConfig({ colabUrl }: ApiConfigProps) {
                     >
                       Abra o notebook no Colab
                     </a>
-                    {' '}e rode as 4 células
+                    {' '}e rode as 3 células
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-serif text-[var(--color-accent)] text-lg leading-none opacity-70 select-none">2</span>
-                  <span>Copie a URL <span className="label-mono text-[var(--color-amber-light)]">ngrok-free.app</span> que aparece na saída</span>
+                  <span>Copie a URL <span className="label-mono text-[var(--color-amber-light)]">trycloudflare.com</span> que aparece na saída</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-serif text-[var(--color-accent)] text-lg leading-none opacity-70 select-none">3</span>
@@ -91,7 +91,7 @@ export function ApiConfig({ colabUrl }: ApiConfigProps) {
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://xxxx.ngrok-free.app"
+                placeholder="https://xxxx.trycloudflare.com"
                 className="w-full bg-[var(--color-bg)] border-b border-[var(--color-border)] px-0 py-2 text-sm text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)] transition-colors placeholder:text-[var(--color-text-muted)] font-mono text-xs"
                 onKeyDown={(e) => e.key === 'Enter' && handleSave()}
               />

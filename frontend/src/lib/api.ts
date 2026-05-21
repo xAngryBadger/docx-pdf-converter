@@ -25,5 +25,5 @@ export function apiUrl(path: string): string {
 }
 
 export function apiHeaders(): Record<string, string> {
-  return { 'ngrok-skip-browser-warning': 'true' }
+  return {}
 }
