@@ -7,9 +7,21 @@ from pathlib import Path
 from docx import Document
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from openpyxl import load_workbook
 from pypdf import PdfReader, PdfWriter
+
+FONT_DIR = "/usr/share/fonts/TTF"
+for name, file in [
+    ("DejaVu", "DejaVuSans.ttf"),
+    ("DejaVu-Bold", "DejaVuSans-Bold.ttf"),
+    ("DejaVuMono", "DejaVuSansMono.ttf"),
+]:
+    path = os.path.join(FONT_DIR, file)
+    if os.path.exists(path):
+        pdfmetrics.registerFont(TTFont(name, path))
 
 app = FastAPI()
 
@@ -24,10 +36,22 @@ app.add_middleware(
 TEMP_DIR = Path("/tmp/docx-converter")
 TEMP_DIR.mkdir(exist_ok=True)
 
+def _get_styles():
+    base = getSampleStyleSheet()
+    font = "DejaVu" if "DejaVu" in pdfmetrics._fonts else "Helvetica"
+    bold = "DejaVu-Bold" if "DejaVu-Bold" in pdfmetrics._fonts else "Helvetica-Bold"
+    mono = "DejaVuMono" if "DejaVuMono" in pdfmetrics._fonts else "Courier"
+    styles = {
+        "Normal": ParagraphStyle("DejaVuNormal", parent=base["Normal"], fontName=font, fontSize=10, leading=14),
+        "Heading1": ParagraphStyle("DejaVuH1", parent=base["Heading1"], fontName=bold, fontSize=14, leading=18, spaceAfter=6),
+        "Code": ParagraphStyle("DejaVuCode", parent=base["Code"], fontName=mono, fontSize=8, leading=11),
+    }
+    return styles
+
 def convert_docx_to_pdf(docx_path: str, output_path: str):
     doc = Document(docx_path)
     doc_pdf = SimpleDocTemplate(output_path, pagesize=A4)
-    styles = getSampleStyleSheet()
+    styles = _get_styles()
     story = []
 
     for para in doc.paragraphs:
@@ -39,7 +63,7 @@ def convert_docx_to_pdf(docx_path: str, output_path: str):
 def convert_xlsx_to_pdf(xlsx_path: str, output_path: str):
     wb = load_workbook(xlsx_path, data_only=True)
     doc_pdf = SimpleDocTemplate(output_path, pagesize=A4)
-    styles = getSampleStyleSheet()
+    styles = _get_styles()
     story = []
 
     for sheet in wb.worksheets:
