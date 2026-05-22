@@ -1,3 +1,5 @@
+# DO NOT FUCKING COMMIT SECRETS — .env, keys, credentials, tokens
+# Keys go in ~/Downloads/SECRET_KEYS_BACKUP.txt, NOT in git
 venv/
 __pycache__/
 *.pyc

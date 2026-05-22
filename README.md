@@ -1,6 +1,6 @@
-# DocX ↔ PDF Converter
+# Capivara
 
-Converta DOCX, XLSX para PDF e comprima PDFs em lote.
+DocX → PDF converter with drag-drop upload, side-by-side preview and auto-download.
 
 ## Features
 

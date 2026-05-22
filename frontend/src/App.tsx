@@ -7,7 +7,7 @@ import { apiUrl, apiHeaders } from './lib/api'
 import { ApiConfig } from './components/ApiConfig'
 import { BetaBanner } from './components/BetaBanner'
 
-const COLAB_URL = 'https://colab.research.google.com/github/xAngryBadger/docx-pdf-converter/blob/main/colab-backend.ipynb'
+const COLAB_URL = 'https://colab.research.google.com/github/xAngryBadger/capivara/blob/main/colab-backend.ipynb'
 
 type ConvertMode = 'docx-pdf' | 'xlsx-pdf' | 'pdf-compress' | 'batch'
 

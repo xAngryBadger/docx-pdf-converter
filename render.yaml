@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: docx-converter-api
+    name: capivara-api
     runtime: python
     build:
       commands:
